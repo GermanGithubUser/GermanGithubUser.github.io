@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku Creator</title>
+    <style>
+        body {
+            font-family: Arial;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 22px;
+        }
+        .sudoku-container {
+            display: grid;
+            grid-template-columns: repeat(9, 50px);
+            grid-template-rows: repeat(9, 50px);
+            margin-bottom: 22px;
+            border: 3px solid;
+        }
+        .sudoku-cell {
+            width: 50px;
+            height: 50px;
+            font-size: 21px;
+            font-weight: 500;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #212020;
+            box-sizing: border-box;
+        }
+        .sudoku-cell input {
+            width: 100%;
+            height: 100%;
+            font-size: 21px;
+            font-weight: 500;
+            border: none;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 12px 18px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        #copy-text {
+            font-size: 14px;
+            color: #454545;
+        }
+        #result {
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .sudoku-container {
+            border: 5px solid;
+        }
+        .sudoku-cell:nth-child(3n+2):not(:nth-child(2)):not(:nth-child(11)):not(:nth-child(20)):not(:nth-child(29)):not(:nth-child(38)):not(:nth-child(47)):not(:nth-child(56)):not(:nth-child(65)):not(:nth-child(74)) {
+            border-left: 5px solid;
+        }
+        .sudoku-cell:nth-child(n+29):nth-child(-n+37),
+        .sudoku-cell:nth-child(n+56):nth-child(-n+64) {
+            border-top: 5px solid;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1 style="margin-bottom: 20pt;"> Create your own sudoku! </h1>
+    <div class="sudoku-container">
+        
+        <script>
+            for (let i = 0; i < 81; i++) {
+                <!-- not the recommended way -->
+                document.write('<div class="sudoku-cell"><input type="text" maxlength="1" /></div>');
+            }
+        </script>
+    </div>
+    <div class="buttons">
+        <div>
+            <button onclick="generateSudoku('easy')"> Generate Easy </button>
+            <button onclick="generateSudoku('medium')"> Generate Medium </button>
+            <button onclick="generateSudoku('hard')"> Generate Hard </button>
+            <button onclick="generateSudoku('very-hard')"> Generate Very Hard </button>
+            <button onclick="generateSudoku('insane')"> Generate Insane </button>
+            <button onclick="generateSudoku('inhuman')"> Generate Inhuman </button>
+        </div>
+        <div>
+            <button onclick="convertGridToString()">Convert to String </button>
+            <button id="solve-button" onclick="solveSudoku()">Solve Sudoku </button>
+            <button id="check-solvable-button" onclick="checkSolvable()">Check if Solvable </button>
+        </div>
+    </div>
+    <div id="result" onclick="copyString()"></div>
+    <p id="copy-text">Click to copy string</p>
+
+
+    <script src="sudoku.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
